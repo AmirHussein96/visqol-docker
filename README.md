@@ -38,8 +38,26 @@ visqol --help
 ```
 
 - more rigorous test:
-    first run docker `docker run -it -v $(pwd):/data visqol-python:latest bash`
-    then run `python /data/test_visqol.py`
+
+Run the container with your current directory mounted to `/data`:
+
+
+    ```
+    docker run -it -v $(pwd):/data visqol-python:latest bash
+    ```
+
+Then inside the container, execute:
+
+``` 
+    python /data/test_visqol.py
+```
+
+You should see output similar to:
+
+```
+   Testing visqol metric: tensor([5.0000], dtype=torch.float64)
+```
+
 
 ## 3. Push the Image to Docker Hub
 Tag the image:
