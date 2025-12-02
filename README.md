@@ -31,6 +31,7 @@ from visqol.pb2 import visqol_config_pb2
 print("Python ViSQOL API loaded successfully!")
 EOF
 ```
+
 - Test command line visqol:
 
 ```
@@ -40,7 +41,6 @@ visqol --help
 - more rigorous test:
 
 Run the container with your current directory mounted to `/data`:
-
 
     ```
     docker run -it -v $(pwd):/data visqol-python:latest bash
@@ -55,21 +55,27 @@ Then inside the container, execute:
 You should see output similar to:
 
 ```
-   Testing visqol metric: tensor([5.0000], dtype=torch.float64)
+testing visqol: tensor([2.9684], dtype=torch.float64)
+testing mel: 5.207100868225098
+testing sisdr: -19.987518310546875
 ```
 
 
 ## 3. Push the Image to Docker Hub
+
 Tag the image:
+
 ```
 docker tag visqol-python:latest amirhussein96/visqol-python:latest
 ```
 Push it:
+
 ```
 docker push amirhussein96/visqol-python:latest
 ```
 
 ## 4. Use the Image with Enroot
+
 - Import from Docker Hub: `enroot import -o visqol-python.sqsh docker://amirhussein96/visqol-python-fixed:latest`
 - Create the rootfs: `enroot create visqol-python.sqsh`
 - Start the container: `enroot start visqol-python`
